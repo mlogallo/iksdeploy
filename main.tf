@@ -137,11 +137,7 @@ module "terraform-intersight-iks" {
   organization = var.organization
   tags         = var.tags
 }
-resource "intersight_kubernetes_cluster_profile" "kubeprofaction" {
-  depends_on = [
-        intersight_kubernetes_node_group_profile.masternodegrp
-  ]
-  action = "Deploy"
+
   name = intersight_kubernetes_cluster_profile.kubeprof.name
   organization {
     object_type = "organization.Organization"
