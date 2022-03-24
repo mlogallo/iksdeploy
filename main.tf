@@ -138,6 +138,4 @@ module "terraform-intersight-iks" {
   tags         = var.tags
 }
   
-  output "kube_config" {
-	value = intersight_kubernetes_cluster_profile.kubeprofaction.kube_config[0].kube_config
-}
+
