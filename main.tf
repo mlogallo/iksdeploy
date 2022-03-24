@@ -25,29 +25,29 @@ module "terraform-intersight-iks" {
 
 # IP Pool Information (To create new change "use_existing" to 'false' uncomment variables and modify them to meet your needs.)
   ip_pool = {
-    use_existing        = true
-    name                = "10-239-21-0"
-    # ip_starting_address = "10.239.21.220"
-    # ip_pool_size        = "20"
-    # ip_netmask          = "255.255.255.0"
-    # ip_gateway          = "10.239.21.1"
-    # dns_servers         = ["10.101.128.15","10.101.128.16"]
+    use_existing        = false
+    name                = "terraformiksips"
+     ip_starting_address = "10.2.48.100"
+     ip_pool_size        = "20"
+     ip_netmask          = "255.255.255.0"
+     ip_gateway          = "10.2.48.1"
+     dns_servers         = ["10.2.0.20"]
   }
 
 # Sysconfig Policy (UI Reference NODE OS Configuration) (To create new change "use_existing" to 'false' uncomment variables and modify them to meet your needs.)
   sysconfig = {
-    use_existing = true
-    name         = "richfield"
-    # domain_name  = "rich.ciscolabs.com"
-    # timezone     = "America/New_York"
-    # ntp_servers  = ["10.101.128.15"]
-    # dns_servers  = ["10.101.128.15"]
+    use_existing = false
+    name         = "terraformsysconfigiks"
+     domain_name  = "netnology.io"
+     timezone     = "America/Chicago"
+     ntp_servers  = ["10.2.0.20"]
+     dns_servers  = ["10.2.0.20"]
   }
 
 # Kubernetes Network CIDR (To create new change "use_existing" to 'false' uncomment variables and modify them to meet your needs.)
   k8s_network = {
     use_existing = true
-    name         = "default"
+    name         = "KubCIDR"
 
     ######### Below are the default settings.  Change if needed. #########
     # pod_cidr     = "100.65.0.0/16"
@@ -57,8 +57,8 @@ module "terraform-intersight-iks" {
 # Version policy (To create new change "useExisting" to 'false' uncomment variables and modify them to meet your needs.)
   versionPolicy = {
     useExisting = true
-    policyName     = "1-19-15-iks.3"
-    iksVersionName = "1.19.15-iks.3"
+    policyName     = "KubVersion"
+    iksVersionName = "1.20.14-iks.0"
   }
 # Trusted Registry Policy (To create new change "use_existing" to 'false' and set "create_new' to 'true' uncomment variables and modify them to meet your needs.)
 # Set both variables to 'false' if this policy is not needed.
@@ -90,7 +90,7 @@ module "terraform-intersight-iks" {
     use_existing = true
     # platformType = "iwe"
     # targetName   = "falcon"
-    policyName   = "dev"
+    policyName   = "KubVMInfraConfig"
     # description  = "Test Policy"
     # interfaces   = ["iwe-guests"]
     # vcTargetName   = optional(string)
@@ -127,7 +127,7 @@ module "terraform-intersight-iks" {
 # Worker Node Instance Type (To create new change "use_existing" to 'false' and uncomment variables and modify them to meet your needs.)
   instance_type = {
     use_existing = true
-    name         = "small"
+    name         = "KubInstType"
     # cpu          = 4
     # memory       = 16386
     # disk_size    = 40
