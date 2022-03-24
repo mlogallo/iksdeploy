@@ -137,6 +137,18 @@ module "terraform-intersight-iks" {
   organization = var.organization
   tags         = var.tags
 }
+resource "intersight_kubernetes_cluster_profile" "kubeprofaction" {
+  depends_on = [
+        intersight_kubernetes_node_group_profile.masternodegrp
+  ]
+  action = "Deploy"
+  name = intersight_kubernetes_cluster_profile.kubeprof.name
+  organization {
+    object_type = "organization.Organization"
+    moid        = data.intersight_organization_organization.organization_moid.results.0.moid 
+  }
+
+}
 #Wait for cluster to come up and then outpt the kubeconfig, if successful
 output "kube_config" {
 	value = intersight_kubernetes_cluster_profile.kubeprofaction.kube_config[0].kube_config
